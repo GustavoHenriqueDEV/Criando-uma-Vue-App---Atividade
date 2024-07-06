@@ -21,16 +21,18 @@
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
-          <a :href="url">Amazon meias</a>
+          <p v-if="onSale">A venda</p>
+          <p v-if="inventory > 10">Em Estoque</p>
+          <p v-else-if="inventory <= 10 && inventory > 0">Quase esgotado!</p>
+          <p v-else>Fora de Estoque</p>
+
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Import App -->
   <script src="./main.js"></script>
 
-  <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
   </script>
