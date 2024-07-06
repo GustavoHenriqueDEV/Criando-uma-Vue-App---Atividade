@@ -21,17 +21,21 @@
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
+          <div class="cart">Cart({{ cart }})</div>
           <p v-if="onSale">A venda</p>
           <ul>
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
-          
+
             <li v-for="size in sizes">{{ size }}</li>
 
-          <div v-for="variant in variants">{{ variant.color }}</div>
+          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</div>
           <p v-if="inventory > 10">Em Estoque</p>
           <p v-else-if="inventory <= 10 && inventory > 0">Quase esgotado!</p>
           <p v-else>Fora de Estoque</p>
+          
+          <button class="button" v-on:click="addToCart">Add to Cart</button>
+          <button class="button" v-on:click="remove">Remove </button>
 
         </div>
       </div>
